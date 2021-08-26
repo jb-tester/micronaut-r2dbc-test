@@ -1,9 +1,12 @@
-CREATE TABLE IF NOT EXISTS authors (
+DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS authors;
+CREATE TABLE authors (
                                        id INT NOT NULL PRIMARY KEY,
                                        nick VARCHAR(15),
                                        name VARCHAR(255)
 );
-CREATE TABLE IF NOT EXISTS posts (
+CREATE TABLE posts (
     id INT NOT NULL PRIMARY KEY,
     title VARCHAR(255),
     content VARCHAR(255),
@@ -12,7 +15,7 @@ CREATE TABLE IF NOT EXISTS posts (
     version INTEGER
 );
 
-CREATE TABLE IF NOT EXISTS comments (
+CREATE TABLE comments (
     id INT NOT NULL PRIMARY KEY,
     content VARCHAR(255),
     post_id INT REFERENCES posts ON DELETE CASCADE,
