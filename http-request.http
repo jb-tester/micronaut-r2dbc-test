@@ -1,0 +1,28 @@
+###
+GET http://localhost:8080/allAuthors
+
+<> 2021-08-26T215414.200.json
+<> 2021-08-26T215135.200.json
+<> 2021-08-26T214406.200.json
+
+###
+GET http://localhost:8080/authorsByNick/monster
+
+<> 2021-08-26T221339.200.json
+<> 2021-08-26T215632.200.json
+<> 2021-08-26T215358.200.json
+<> 2021-08-26T215114.200.json
+
+###
+GET http://localhost:8080/authorById/3
+
+<> 2021-08-26T221431.200.json
+
+###
+GET http://localhost:8080/authorByName/ivan
+
+<> 2021-08-26T222717.200.json
+<> 2021-08-26T222524.200.json
+<> 2021-08-26T222150.200.json
+
+###
