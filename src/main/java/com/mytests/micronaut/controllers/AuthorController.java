@@ -1,4 +1,4 @@
-package com.mytests.micronaut.data.controllers;
+package com.mytests.micronaut.controllers;
 
 import com.mytests.micronaut.data.Author;
 import com.mytests.micronaut.repos.AuthorRepo;
