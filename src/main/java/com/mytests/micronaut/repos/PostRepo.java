@@ -29,6 +29,7 @@ public interface PostRepo extends ReactiveStreamsCrudRepository<Post, Integer> {
     @Join(value = "author", alias = "auth_")
     Publisher<Post> searchPosts(String name);
 
+    @Join(value = "author", type = Join.Type.FETCH)
     Flux<Post> getByAuthor(Author author);
 
     @Join(value = "author", type = Join.Type.FETCH)

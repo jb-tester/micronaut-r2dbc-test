@@ -45,6 +45,9 @@ public class PostController {
     @Get("/allPostsByAuthor/{author}")
     public Flowable<Post> allPostsByAuthor(@PathVariable String author) {
         Author _author_ = Single.fromPublisher(authorRepo.findByFullNameContains(author)).blockingGet();
+        System.out.println("**********************************");
+        System.out.println(_author_.getId());
+        System.out.println("**********************************");
         return Flowable.fromPublisher(postRepo.getByAuthor(_author_));
     }
 
