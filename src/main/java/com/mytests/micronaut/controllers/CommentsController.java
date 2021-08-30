@@ -31,4 +31,9 @@ public class CommentsController {
     public Flowable<Comment> commentsByPostAndAuthor(@PathVariable String a, @PathVariable String p) {
         return Flowable.fromPublisher(commentsRepo.findByPostIdAndAuthorId(Integer.parseInt(p),Integer.parseInt(a)));
     }
+
+    @Get("/commentsByContents/{txt}")
+    public Flowable<Comment> byContents(@PathVariable String txt) {
+        return Flowable.fromPublisher(commentsRepo.findByContentContains(txt));
+    }
 }

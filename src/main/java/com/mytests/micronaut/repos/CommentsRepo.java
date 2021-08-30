@@ -21,5 +21,5 @@ public interface CommentsRepo extends ReactiveStreamsCrudRepository<Comment, Int
     @Join(value = "post", type = Join.Type.FETCH)
     Publisher<Comment> findByPostId(Integer post_id);
 
-
+    Publisher<Comment> findByContentContains(String content);
 }
