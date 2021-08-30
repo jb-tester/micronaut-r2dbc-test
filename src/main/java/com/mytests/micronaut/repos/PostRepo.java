@@ -9,6 +9,7 @@ import io.micronaut.data.r2dbc.annotation.R2dbcRepository;
 import io.micronaut.data.repository.reactive.ReactiveStreamsCrudRepository;
 import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import javax.validation.constraints.NotNull;
 
@@ -24,7 +25,7 @@ public interface PostRepo extends ReactiveStreamsCrudRepository<Post, Integer> {
     @Query("select p.title from posts p where p.status = 'DRAFT'")
     Publisher<String> findDrafts();
 
-    @Query("SELECT *, auth_.name as auth_name, auth_.nick as auth_nick, auth_.id as auth_id FROM posts p INNER JOIN authors auth_ ON p.author_id = auth_.id WHERE p.title like :name")
+    @Query(value = "SELECT *, auth_.name as auth_name, auth_.nick as auth_nick, auth_.id as auth_id FROM posts p INNER JOIN authors auth_ ON p.author_id = auth_.id WHERE p.title like :name", nativeQuery = true)
     @Join(value = "author", alias = "auth_")
     Publisher<Post> searchPosts(String name);
 
@@ -35,4 +36,6 @@ public interface PostRepo extends ReactiveStreamsCrudRepository<Post, Integer> {
 
 
     Publisher<Post> findByAuthorNickName(String author_nickName);
+
+    Mono<Post> findFirstOrderByIdDesc();
 }

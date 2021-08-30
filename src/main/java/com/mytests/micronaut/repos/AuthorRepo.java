@@ -6,6 +6,7 @@ import io.micronaut.data.r2dbc.annotation.R2dbcRepository;
 import io.micronaut.data.repository.reactive.ReactiveStreamsCrudRepository;
 import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  * *
@@ -20,6 +21,8 @@ public interface AuthorRepo extends ReactiveStreamsCrudRepository<Author, Intege
 
    
    Publisher<Author> findByFullNameContains(String fullName);
+
+   Mono<Author> findFirstOrderByIdDesc();
 
 
 }

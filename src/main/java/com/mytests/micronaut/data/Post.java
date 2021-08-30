@@ -72,5 +72,12 @@ public class Post {
         this.author = author;
     }
 
-
+    public Post(Integer id, String title, String content, String status, Integer version, Author author) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.status = status;
+        this.version = version;
+        this.author = author;
+    }
 }

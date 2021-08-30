@@ -40,4 +40,9 @@ public class AuthorController {
        
         return Single.fromPublisher(authorRepo.findById(Integer.parseInt(id)));
     }
+
+    @Get("/lastAuthorId")
+    public Integer lastAuthorId() {
+        return authorRepo.findFirstOrderByIdDesc().block().getId();
+    }
 }

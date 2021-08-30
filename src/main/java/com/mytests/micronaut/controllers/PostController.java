@@ -10,7 +10,6 @@ import io.micronaut.http.annotation.PathVariable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 import jakarta.inject.Inject;
-import org.reactivestreams.Publisher;
 
 /**
  * *
@@ -27,6 +26,13 @@ public class PostController {
     @Inject
     AuthorRepo authorRepo;
 
+   /* @Inject
+    SetupService setupService;
+
+    @io.micronaut.http.annotation.Post("/addAuthorsAndPosts")
+    public void setup(){
+       setupService.setupData();
+    }*/
     @Get("/allPosts")
     public Flowable<Post> allPosts() {
         return Flowable.fromPublisher(postRepo.findAll());
