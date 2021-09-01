@@ -1,57 +1,15 @@
-###
-GET http://localhost:8080/allComments
-
-
+#### setup database:
 ###
 POST http://localhost:8080/addAuthorsAndPosts
 
-
-
-###
-GET http://localhost:8080/lastAuthorId
-
-
-
-###
-GET http://localhost:8080/commentsByPostAndAuthor/1-2
-
-
-
-###
-GET http://localhost:8080/commentsByPost/1
-
-
-
-###
-GET http://localhost:8080/commentsByContents/a
-
-
-###
-GET http://localhost:8080/authorId/ma
-
-<> 2021-08-27T103402.200.json
-<> 2021-08-27T103349.200.json
-<> 2021-08-27T103340.200.json
-
-###
-GET http://localhost:8080/allAuthors
-
-
-###
-GET http://localhost:8080/authorsByNick/monster
-
-
-###
-GET http://localhost:8080/authorById/3
-
-
-###
-GET http://localhost:8080/authorByName/ivan
-
-
+#### posts:
 ###
 
 GET http://localhost:8080/allPostsByAuthor/vasya%20pupkin
+
+###
+GET http://localhost:8080/allPostsByAuthor2/ivan%20fedorovich%20pahomov
+
 
 
 ###
@@ -74,4 +32,48 @@ GET http://localhost:8080/postsByTitle/america
 ###
 GET http://localhost:8080/allPosts
 
+
+#### comments:
 ###
+GET http://localhost:8080/allComments
+
+
+###
+GET http://localhost:8080/lastAuthorId
+
+
+
+###
+GET http://localhost:8080/commentsByPostAndAuthor/1-2
+
+
+
+###
+GET http://localhost:8080/commentsByPost/1
+
+
+
+###
+GET http://localhost:8080/commentsByContents/a
+
+##### authors:
+###
+GET http://localhost:8080/allAuthors
+
+
+###
+GET http://localhost:8080/authorId/ma
+
+
+###
+GET http://localhost:8080/authorsByNick/monster
+
+
+###
+GET http://localhost:8080/authorById/3
+
+
+###
+GET http://localhost:8080/authorByName/ivan
+
+
