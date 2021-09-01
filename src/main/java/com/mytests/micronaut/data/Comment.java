@@ -1,6 +1,9 @@
 package com.mytests.micronaut.data;
 
-import javax.persistence.*;
+import io.micronaut.data.annotation.Id;
+import io.micronaut.data.annotation.MappedEntity;
+import io.micronaut.data.annotation.Relation;
+
 
 /**
  * *
@@ -13,21 +16,24 @@ import javax.persistence.*;
  *     author_id INT REFERENCES authors,
  *     version INTEGER
  */
-@Entity
-@Table(name = "comments")
+//@Entity
+//@Table(name = "comments")
+@MappedEntity("comments")
 public class Comment {
 
     @Id
-    Integer id;
-    String content;
-    Integer version;
+    private Integer id;
+    private String content;
+    private Integer version;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id")
+    //@ManyToOne
+    //@JoinColumn(name = "author_id")
+    @Relation(Relation.Kind.MANY_TO_ONE)
     private Author author;
 
-    @ManyToOne
-    @JoinColumn(name="post_id")
+    //@ManyToOne
+    //@JoinColumn(name="post_id")
+    @Relation(Relation.Kind.MANY_TO_ONE)
     private Post post;
 
     public Integer getId() {
@@ -68,5 +74,16 @@ public class Comment {
 
     public void setPost(Post post) {
         this.post = post;
+    }
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", content='" + content + '\'' +
+                ", version=" + version +
+                ", author=" + author.getNickName() +
+                ", post=" + post.getTitle() +
+                '}';
     }
 }

@@ -8,6 +8,7 @@ import io.micronaut.http.annotation.PathVariable;
 import io.reactivex.Flowable;
 import io.reactivex.internal.operators.flowable.FlowableAll;
 import jakarta.inject.Inject;
+import reactor.core.publisher.Flux;
 
 import java.util.concurrent.Flow;
 
@@ -35,5 +36,10 @@ public class CommentsController {
     @Get("/commentsByContents/{txt}")
     public Flowable<Comment> byContents(@PathVariable String txt) {
         return Flowable.fromPublisher(commentsRepo.findByContentContains(txt));
+    }
+
+    @Get("/allComments")
+    public Flowable<Comment> allComments() {
+        return Flowable.fromPublisher(commentsRepo.findAll());
     }
 }

@@ -16,10 +16,23 @@ import org.reactivestreams.Publisher;
  */
 @R2dbcRepository(dialect = Dialect.H2)
 public interface CommentsRepo extends ReactiveStreamsCrudRepository<Comment, Integer> {
-
-    Publisher<Comment> findByPostIdAndAuthorId(Integer post_id, Integer author_id);
     @Join(value = "post", type = Join.Type.FETCH)
+    @Join(value = "post.author", type = Join.Type.FETCH)
+    @Join(value = "author", type = Join.Type.FETCH)
+    Publisher<Comment> findByPostIdAndAuthorId(Integer post_id, Integer author_id);
+
+    @Join(value = "post", type = Join.Type.FETCH)
+    @Join(value = "post.author", type = Join.Type.FETCH)
+    @Join(value = "author", type = Join.Type.FETCH)
     Publisher<Comment> findByPostId(Integer post_id);
 
+    @Join(value = "post", type = Join.Type.FETCH)
+    @Join(value = "post.author", type = Join.Type.FETCH)
+    @Join(value = "author", type = Join.Type.FETCH)
     Publisher<Comment> findByContentContains(String content);
+
+    @Join(value = "post", type = Join.Type.FETCH)
+    @Join(value = "post.author", type = Join.Type.FETCH)
+    @Join(value = "author", type = Join.Type.FETCH)
+    Publisher<Comment> findAll();
 }

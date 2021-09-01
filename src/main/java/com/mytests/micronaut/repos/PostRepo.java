@@ -2,11 +2,13 @@ package com.mytests.micronaut.repos;
 
 import com.mytests.micronaut.data.Author;
 import com.mytests.micronaut.data.Post;
+import io.micronaut.core.annotation.NonNull;
 import io.micronaut.data.annotation.Join;
 import io.micronaut.data.annotation.Query;
 import io.micronaut.data.model.query.builder.sql.Dialect;
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository;
 import io.micronaut.data.repository.reactive.ReactiveStreamsCrudRepository;
+import io.reactivex.Flowable;
 import org.reactivestreams.Publisher;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -35,8 +37,11 @@ public interface PostRepo extends ReactiveStreamsCrudRepository<Post, Integer> {
     @Join(value = "author", type = Join.Type.FETCH)
     Flux<Post> getByAuthorId(Integer author_id);
 
-
+    @Join(value = "author", type = Join.Type.FETCH)
     Publisher<Post> findByAuthorNickName(String author_nickName);
 
     Mono<Post> findFirstOrderByIdDesc();
+
+    @NonNull @Join(value = "author", type = Join.Type.FETCH)
+    Flowable<Post> findAll();
 }

@@ -1,34 +1,30 @@
 ###
+GET http://localhost:8080/allComments
+
+
+###
 POST http://localhost:8080/addAuthorsAndPosts
 
-<> 2021-08-30T153354.503.html
+
 
 ###
 GET http://localhost:8080/lastAuthorId
 
-<> 2021-08-30T154630.200.json
+
 
 ###
 GET http://localhost:8080/commentsByPostAndAuthor/1-2
 
-<> 2021-08-30T172146.200.json
-<> 2021-08-30T172019.200.json
-<> 2021-08-30T171915.200.json
-<> 2021-08-30T171829.200.json
-<> 2021-08-30T171730.200.json
-<> 2021-08-30T171607.500.json
+
 
 ###
 GET http://localhost:8080/commentsByPost/1
 
-<> 2021-08-30T172540.200.json
-<> 2021-08-30T172356.200.json
+
 
 ###
 GET http://localhost:8080/commentsByContents/a
 
-<> 2021-08-30T174145.200.json
-<> 2021-08-30T174110.404.json
 
 ###
 GET http://localhost:8080/allAuthors

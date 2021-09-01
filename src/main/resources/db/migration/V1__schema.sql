@@ -14,7 +14,6 @@ CREATE TABLE posts (
     status VARCHAR(255) default 'DRAFT',
     version INTEGER
 );
-
 CREATE TABLE comments (
     id INT NOT NULL PRIMARY KEY,
     content VARCHAR(255),
@@ -40,4 +39,4 @@ INSERT INTO comments(id, content, post_id, author_id, version) VALUES ( 2, 'show
 INSERT INTO comments(id, content, post_id, author_id, version) VALUES ( 3, 'show your tits!', 4, 1, 1 );
 INSERT INTO comments(id, content, post_id, author_id, version) VALUES ( 4, 'show your tits!', 2, 1, 1 );
 INSERT INTO comments(id, content, post_id, author_id, version) VALUES ( 5, 'americans suck', 2, 1, 1 );
-INSERT INTO comments(id, content, post_id, author_id, version) VALUES ( 6, 'do you put onion to pork under mayo?', 4, 2, 1 );
+INSERT INTO comments(id, content, post_id, author_id, version) VALUES ( 6, 'do you put onion to pork under mayo?', 4, 2,2 );
