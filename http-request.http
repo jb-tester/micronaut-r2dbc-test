@@ -27,6 +27,13 @@ GET http://localhost:8080/commentsByContents/a
 
 
 ###
+GET http://localhost:8080/authorId/ma
+
+<> 2021-08-27T103402.200.json
+<> 2021-08-27T103349.200.json
+<> 2021-08-27T103340.200.json
+
+###
 GET http://localhost:8080/allAuthors
 
 

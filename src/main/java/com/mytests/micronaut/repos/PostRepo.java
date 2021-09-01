@@ -40,6 +40,7 @@ public interface PostRepo extends ReactiveStreamsCrudRepository<Post, Integer> {
     @Join(value = "author", type = Join.Type.FETCH)
     Publisher<Post> findByAuthorNickName(String author_nickName);
 
+    @Join(value = "author", type = Join.Type.FETCH)
     Single<Post> findFirstOrderByIdDesc();
 
     @NonNull @Join(value = "author", type = Join.Type.FETCH)

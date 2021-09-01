@@ -31,13 +31,13 @@ public class SetupService {
     @Transactional
     public Mono<Void> setupData() {
 
-        //int lastAuthorId = authorRepo.findFirstOrderByIdDesc().block().getId();
-        Integer lastAuthorId = 10;
+        int lastAuthorId = authorRepo.findFirstOrderByIdDesc().block().getId();
+       
         System.out.println(lastAuthorId);
-       // int lastPostId = postRepo.findFirstOrderByIdDesc().block().getId();
-        Integer lastPostId = 10;
+       int lastPostId = postRepo.findFirstOrderByIdDesc().blockingGet().getId();
+        
         System.out.println(lastPostId);
-        return Mono.just(Mono.from(operations.withTransaction(status ->
+        return Mono.from(operations.withTransaction(status ->
                 Flux.from(authorRepo.save(new Author(lastAuthorId + 1, "rex", "vasya vasiliev")))
                         .flatMap((author -> postRepo.saveAll(Arrays.asList(
                                 new Post(lastPostId + 1, "important post", "empty", "RELEASE", 1, author),
@@ -47,6 +47,6 @@ public class SetupService {
                         .flatMap((author ->
                                 postRepo.save(new Post(lastPostId + 3, "test post", "empty", "RELEASE", 1, author))
                         )).then()
-        )).block());
+        ));
     }
 }

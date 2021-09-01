@@ -4,6 +4,7 @@ import com.mytests.micronaut.data.Author;
 import com.mytests.micronaut.data.Post;
 import com.mytests.micronaut.repos.AuthorRepo;
 import com.mytests.micronaut.repos.PostRepo;
+import com.mytests.micronaut.repos.SetupService;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
@@ -26,13 +27,14 @@ public class PostController {
     @Inject
     AuthorRepo authorRepo;
 
-   /* @Inject
-    SetupService setupService;
+   @Inject
+   SetupService service;
 
-    @io.micronaut.http.annotation.Post("/addAuthorsAndPosts")
-    public void setup(){
-       setupService.setupData();
-    }*/
+   
+   @io.micronaut.http.annotation.Post("/addAuthorsAndPosts")
+   Flowable<Void> setUp(){
+       return Flowable.fromPublisher(service.setupData());
+   }
     @Get("/allPosts")
     public Flowable<Post> allPosts() {
         return Flowable.fromPublisher(postRepo.findAll());
@@ -50,7 +52,12 @@ public class PostController {
         System.out.println("**********************************");
         return Flowable.fromPublisher(postRepo.getByAuthor(_author_));
     }
-
+    @Get("/allPostsByAuthor2/{author}")
+    public Flowable<Post> allPostsByAuthor2(@PathVariable String author) {
+        
+        
+        return Flowable.fromPublisher(authorRepo.findByFullNameContains(author)).flatMap((_author_ -> postRepo.getByAuthor(_author_)));
+    }
     @Get("/allPostsByAuthorId/{author}")
     public Flowable<Post> allPostsByAuthorId(@PathVariable String author) {
 

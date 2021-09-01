@@ -7,6 +7,8 @@ import io.micronaut.data.r2dbc.repository.ReactorCrudRepository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * *
  * <p>Created by irina on 8/26/2021.</p>
@@ -23,5 +25,5 @@ public interface AuthorRepo extends ReactorCrudRepository<Author, Integer> {
 
    Mono<Author> findFirstOrderByIdDesc();
 
-
+   // Mono<Integer> queryMinIdByFullNameContains(String fullName);
 }
