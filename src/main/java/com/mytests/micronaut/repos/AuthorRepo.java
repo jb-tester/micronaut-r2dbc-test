@@ -3,8 +3,7 @@ package com.mytests.micronaut.repos;
 import com.mytests.micronaut.data.Author;
 import io.micronaut.data.model.query.builder.sql.Dialect;
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository;
-import io.micronaut.data.repository.reactive.ReactiveStreamsCrudRepository;
-import org.reactivestreams.Publisher;
+import io.micronaut.data.r2dbc.repository.ReactorCrudRepository;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -15,12 +14,12 @@ import reactor.core.publisher.Mono;
  * *
  */
 @R2dbcRepository(dialect = Dialect.H2)
-public interface AuthorRepo extends ReactiveStreamsCrudRepository<Author, Integer> {
+public interface AuthorRepo extends ReactorCrudRepository<Author, Integer> {
 
    Flux<Author> findByNickName(String nickName);
 
    
-   Publisher<Author> findByFullNameContains(String fullName);
+   Flux<Author> findByFullNameContains(String fullName);
 
    Mono<Author> findFirstOrderByIdDesc();
 

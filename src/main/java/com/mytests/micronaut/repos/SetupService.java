@@ -31,9 +31,11 @@ public class SetupService {
     @Transactional
     public Mono<Void> setupData() {
 
-        int lastAuthorId = authorRepo.findFirstOrderByIdDesc().block().getId();
+        //int lastAuthorId = authorRepo.findFirstOrderByIdDesc().block().getId();
+        Integer lastAuthorId = 10;
         System.out.println(lastAuthorId);
-        int lastPostId = postRepo.findFirstOrderByIdDesc().block().getId();
+       // int lastPostId = postRepo.findFirstOrderByIdDesc().block().getId();
+        Integer lastPostId = 10;
         System.out.println(lastPostId);
         return Mono.just(Mono.from(operations.withTransaction(status ->
                 Flux.from(authorRepo.save(new Author(lastAuthorId + 1, "rex", "vasya vasiliev")))

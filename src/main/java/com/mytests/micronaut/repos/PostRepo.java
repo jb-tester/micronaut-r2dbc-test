@@ -9,10 +9,10 @@ import io.micronaut.data.model.query.builder.sql.Dialect;
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository;
 import io.micronaut.data.repository.reactive.ReactiveStreamsCrudRepository;
 import io.reactivex.Flowable;
+import io.reactivex.Single;
 import org.reactivestreams.Publisher;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
-
+import javax.transaction.Transactional;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -32,16 +32,26 @@ public interface PostRepo extends ReactiveStreamsCrudRepository<Post, Integer> {
     Publisher<Post> searchPosts(String name);
 
     @Join(value = "author", type = Join.Type.FETCH)
-    Flux<Post> getByAuthor(Author author);
+    Publisher<Post> getByAuthor(Author author);
 
     @Join(value = "author", type = Join.Type.FETCH)
-    Flux<Post> getByAuthorId(Integer author_id);
+    Publisher<Post> getByAuthorId(Integer author_id);
 
     @Join(value = "author", type = Join.Type.FETCH)
     Publisher<Post> findByAuthorNickName(String author_nickName);
 
-    Mono<Post> findFirstOrderByIdDesc();
+    Single<Post> findFirstOrderByIdDesc();
 
     @NonNull @Join(value = "author", type = Join.Type.FETCH)
     Flowable<Post> findAll();
+
+    @NonNull
+    @Override
+    @Transactional(Transactional.TxType.MANDATORY)
+    <S extends Post> Publisher<S> save(@NonNull @Valid @NotNull S entity);
+
+    @NonNull
+    @Override
+    @Transactional(Transactional.TxType.MANDATORY)
+    <S extends Post> Publisher<S> saveAll(@NonNull @Valid @NotNull Iterable<S> entities);
 }

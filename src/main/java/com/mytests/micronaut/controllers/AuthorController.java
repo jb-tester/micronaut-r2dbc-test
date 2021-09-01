@@ -5,9 +5,9 @@ import com.mytests.micronaut.repos.AuthorRepo;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.PathVariable;
-import io.reactivex.Flowable;
-import io.reactivex.Single;
 import jakarta.inject.Inject;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 /**
  * *
@@ -20,25 +20,27 @@ public class AuthorController {
     @Inject
     AuthorRepo authorRepo;
     @Get("/allAuthors")
-    public Flowable<Author> allAuthors() {
-        return Flowable.fromPublisher(authorRepo.findAll());
+    public Flux<Author> allAuthors() {
+        return authorRepo.findAll();
     }
 
     @Get("/authorsByNick/{name}")
-    public Flowable<Author> authorsByNick(@PathVariable String name)
+    public Flux<Author> authorsByNick(@PathVariable String name)
 
     {
-        return Flowable.fromPublisher(authorRepo.findByNickName(name));
+        //return Flowable.fromPublisher(authorRepo.findByNickName(name));
+        //return Flux.from(authorRepo.findByNickName(name));
+        return authorRepo.findByNickName(name);
     }
 
     @Get("/authorByName/{name}")
-    public Flowable<Author> authorByName(@PathVariable String name) {
-        return Flowable.fromPublisher(authorRepo.findByFullNameContains((name)));
+    public Flux<Author> authorByName(@PathVariable String name) {
+        return authorRepo.findByFullNameContains((name));
     }
     @Get("/authorById/{id}")
-    public Single<Author> authorById(@PathVariable String id) {
+    public Mono<Author> authorById(@PathVariable String id) {
        
-        return Single.fromPublisher(authorRepo.findById(Integer.parseInt(id)));
+        return authorRepo.findById(Integer.parseInt(id));
     }
 
     @Get("/lastAuthorId")
