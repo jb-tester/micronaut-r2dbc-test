@@ -16,7 +16,7 @@ import reactor.core.publisher.Mono;
  * *  TODO: here all methods don't work for some reason with 3.0.0
  */
 @Controller
-public class AuthorController {
+public class AuthorControllerReactive {
     @Inject
     AuthorRepo authorRepo;
     @Get("/allAuthors")
@@ -43,7 +43,7 @@ public class AuthorController {
         return authorRepo.findById(Integer.parseInt(id));
     }
 
-    @Get("/lastAuthorId")
+    @Get("/lastAuthorId") // this one works
     public Integer lastAuthorId() {
         return authorRepo.findFirstOrderByIdDesc().block().getId();
     }

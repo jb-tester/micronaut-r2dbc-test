@@ -62,7 +62,7 @@ GET http://localhost:8080/allAuthors
 
 
 ###
-GET http://localhost:8080/authorId/ma
+GET http://localhost:8080/authorByName/ma
 
 
 ###

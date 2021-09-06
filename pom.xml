@@ -18,7 +18,7 @@
         <jdk.version>11</jdk.version>
         <release.version>11</release.version>
         <micronaut.version>3.0.0</micronaut.version>
-        <micronaut.data.version>3.0.0</micronaut.data.version>
+        <micronaut.data.version>3.0.1</micronaut.data.version>
         <exec.mainClass>com.mytests.micronaut.Application</exec.mainClass>
         <micronaut.runtime>netty</micronaut.runtime>
     </properties>
@@ -55,10 +55,10 @@
             <artifactId>micronaut-test-junit5</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>io.micronaut.reactor</groupId>
             <artifactId>micronaut-reactor</artifactId>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-http-client</artifactId>
@@ -74,11 +74,11 @@
             <artifactId>micronaut-runtime</artifactId>
             <scope>compile</scope>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>io.micronaut.data</groupId>
             <artifactId>micronaut-data-jdbc</artifactId>
             <scope>compile</scope>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>io.micronaut.data</groupId>
             <artifactId>micronaut-data-r2dbc</artifactId>
@@ -89,11 +89,11 @@
             <artifactId>micronaut-flyway</artifactId>
             <scope>compile</scope>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>io.micronaut.r2dbc</groupId>
             <artifactId>micronaut-r2dbc-core</artifactId>
             <scope>compile</scope>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>io.micronaut.sql</groupId>
             <artifactId>micronaut-jdbc-hikari</artifactId>
