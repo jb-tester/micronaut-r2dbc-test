@@ -3,6 +3,7 @@ package com.mytests.micronaut.repos;
 import com.mytests.micronaut.data.Author;
 import com.mytests.micronaut.data.Post;
 import io.micronaut.data.r2dbc.operations.R2dbcOperations;
+//import io.reactivex.Single;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import reactor.core.publisher.Flux;
@@ -34,8 +35,9 @@ public class SetupService {
         int lastAuthorId = authorRepo.findFirstOrderByIdDesc().block().getId();
        
         System.out.println(lastAuthorId);
-       int lastPostId = postRepo.findFirstOrderByIdDesc().blockingGet().getId();
-        
+       //int lastPostId = Single.fromPublisher(postRepo.findFirstOrderByIdDesc()).blockingGet().getId();
+        int lastPostId = Mono.from(postRepo.findFirstOrderByIdDesc()).block().getId();
+
         System.out.println(lastPostId);
         return Mono.from(operations.withTransaction(status ->
                 Flux.from(authorRepo.save(new Author(lastAuthorId + 1, "rex", "vasya vasiliev")))

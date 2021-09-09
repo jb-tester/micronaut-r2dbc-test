@@ -11,6 +11,7 @@ import io.micronaut.http.annotation.PathVariable;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 import jakarta.inject.Inject;
+import org.reactivestreams.Publisher;
 
 /**
  * *
@@ -43,6 +44,7 @@ public class PostController {
     @Get("/allDrafts")
     public Flowable<String> allDrafts() {
         return Flowable.fromPublisher(postRepo.findDrafts());
+        //return postRepo.findDrafts();  // for incorrect return type
     }
     @Get("/allPostsByAuthor/{author}")
     public Flowable<Post> allPostsByAuthor(@PathVariable String author) {
@@ -73,5 +75,11 @@ public class PostController {
     @Get("/postsByTitle/{title}")
     public Flowable<Post> postsByTitle(@PathVariable String title) {
         return Flowable.fromPublisher(postRepo.searchPosts(title));
+    }
+
+    @Get("/firstPostByVersion/{v}")
+    public Publisher<Post> firstPostByVersion(@PathVariable String v) {
+        return postRepo.findFirstByVersion(Integer.parseInt(v));
+        // return postRepo.findFirstByVersion(Integer.parseInt(v)); // for incorrect return type
     }
 }
